@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="rwilk.englishWordsGUI.view.HomeController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#menuItemCloseOnAction" text="Close" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#menuItemAboutOnAction" text="About" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <SplitPane dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <TextField fx:id="textFieldTextToTranslate">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="buttonTranslate" mnemonicParsing="false" onAction="#buttonTranslateOnAction" onMouseClicked="#buttonTranslateOnMouseClick" text="Translate">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <RadioButton fx:id="radioButtonDiki" mnemonicParsing="false" onAction="#radioButtonDikiOnAction" text="Diki">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="9.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                              <RadioButton fx:id="radioButtonWiktionary" mnemonicParsing="false" onAction="#radioButtonWiktionaryOnAction" text="Wiktionary">
+                                 <HBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="9.0" />
+                                 </HBox.margin>
+                              </RadioButton>
+                           </children>
+                        </HBox>
+                        <ListView fx:id="listViewTranslateWord" onMouseClicked="#listViewTranslateWordOnMouseClicked" prefHeight="300.0" prefWidth="232.0" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets bottom="2.0" />
+                           </VBox.margin>
+                        </ListView>
+                        <ListView fx:id="listViewTranslateSentence" onMouseClicked="#listViewTranslateSentenceOnMouseClicked" prefHeight="300.0" prefWidth="232.0" VBox.vgrow="ALWAYS">
+                           <VBox.margin>
+                              <Insets top="2.0" />
+                           </VBox.margin>
+                        </ListView>
+                     </children>
+                  </VBox>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <TabPane tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <tabs>
+                                <Tab onSelectionChanged="#tabWordsOnSelectionChanged" text="Words">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                            <children>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <items>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                            <children>
+                                                                <TableView fx:id="tableViewWords" onMouseClicked="#tableViewWordsOnMouseClicked" prefHeight="297.0" prefWidth="456.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                    <columns>
+                                                                        <TableColumn fx:id="columnWordId" minWidth="20.0" prefWidth="-1.0" text="Id">
+                                                                            <cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory></TableColumn>
+                                                                        <TableColumn fx:id="columnWordEnglishWord" minWidth="20.0" prefWidth="-1.0" text="English Word">
+                                                                            <cellValueFactory><PropertyValueFactory property="englishWord" /></cellValueFactory></TableColumn>
+                                                                        <TableColumn fx:id="columnWordPolishWord" minWidth="20.0" prefWidth="-1.0" text="Polish Word ">
+                                                                            <cellValueFactory><PropertyValueFactory property="polishWord" /></cellValueFactory></TableColumn>
+                                                                        <TableColumn fx:id="columnWordPartOfSpeech" minWidth="20.0" prefWidth="-1.0" text="Part of Speech">
+                                                                            <cellValueFactory><PropertyValueFactory property="partOfSpeech" /></cellValueFactory></TableColumn>
+                                                                        <TableColumn fx:id="columnWordEnglishSentence" minWidth="20.0" prefWidth="-1.0" text="English Sentence">
+                                                                            <cellValueFactory><PropertyValueFactory property="englishSentence" /></cellValueFactory></TableColumn>
+                                                                        <TableColumn fx:id="columnWordPolishSentence" minWidth="20.0" prefWidth="-1.0" text="Polish Sentence">
+                                                                            <cellValueFactory><PropertyValueFactory property="polishSentence" /></cellValueFactory></TableColumn>
+                                                                        <TableColumn fx:id="columnWordLesson" minWidth="20.0" prefWidth="-1.0" text="Lesson">
+                                                                            <cellValueFactory><PropertyValueFactory property="lesson" /></cellValueFactory></TableColumn>
+                                                                    </columns>
+                                                                </TableView>
+                                                            </children>
+                                                        </AnchorPane>
+                                          <VBox prefHeight="200.0" prefWidth="100.0">
+                                             <children>
+                                                <HBox blendMode="GREEN" VBox.vgrow="ALWAYS">
+                                                   <children>
+                                                      <Region HBox.hgrow="ALWAYS">
+                                                         <HBox.margin>
+                                                            <Insets />
+                                                         </HBox.margin>
+                                                      </Region>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lesson">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </Text>
+                                                      <ComboBox fx:id="comboBoxWordFilterLesson" onAction="#comboBoxWordFilterLessonOnAction" prefWidth="150.0">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </ComboBox>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Course">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </Text>
+                                                      <ComboBox fx:id="comboBoxWordFilterCourse" onAction="#comboBoxWordFilterCourseOnAction" prefWidth="150.0">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </ComboBox>
+                                                      <Button mnemonicParsing="false" onMouseClicked="#buttonClearFilterOnMouseClicked" text="Clear filter">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets />
+                                                   </VBox.margin>
+                                                </HBox>
+                                                <HBox>
+                                                   <children>
+                                                      <Text layoutX="159.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id:" textOrigin="CENTER">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </Text>
+                                                      <TextField fx:id="textFieldWordId" editable="false" prefWidth="30.0" HBox.hgrow="ALWAYS">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Part of Speech">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </Text>
+                                                      <ComboBox fx:id="comboBoxWordPartOfSpeech" prefWidth="150.0">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </ComboBox>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lesson">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </Text>
+                                                      <ComboBox fx:id="comboBoxWordLesson" prefWidth="150.0">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </ComboBox>
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="English Word:">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </Text>
+                                                      <TextField fx:id="textFieldWordEnglishWord" HBox.hgrow="ALWAYS">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </HBox>
+                                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Polish Word:">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </Text>
+                                                      <TextField fx:id="textFieldWordPolishWord" HBox.hgrow="ALWAYS">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </HBox>
+                                                <HBox layoutX="10.0" layoutY="10.0">
+                                                   <children>
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="English Sentence:">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </Text>
+                                                      <TextField fx:id="textFieldWordEnglishSentence" layoutX="10.0" layoutY="10.0" HBox.hgrow="ALWAYS">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </HBox>
+                                                <HBox alignment="TOP_RIGHT" layoutX="10.0" layoutY="45.0" prefHeight="100.0" prefWidth="200.0">
+                                                   <children>
+                                                      <Region />
+                                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Polish Sentence:">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                                         </HBox.margin>
+                                                      </Text>
+                                                      <TextField fx:id="textFieldWordPolishSentence" HBox.hgrow="ALWAYS">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </TextField>
+                                                   </children>
+                                                </HBox>
+                                                <Region prefHeight="200.0" prefWidth="200.0" />
+                                                <HBox>
+                                                   <children>
+                                                      <CheckBox fx:id="checkBoxConfirmDeleteWord" mnemonicParsing="false" onAction="#checkBoxConfirmDeleteWordOnAction" selected="true" text="Confirm Delete">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="7.5" />
+                                                         </HBox.margin>
+                                                      </CheckBox>
+                                                      <Region HBox.hgrow="ALWAYS">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </Region>
+                                                      <Button mnemonicParsing="false" onAction="#buttonClearWordOnAction" text="Clear">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                      <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonDeleteWordOnAction" text="Delete">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                      <Button layoutX="210.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonEditWordOnAction" text="Edit">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                      <Button layoutX="331.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonAddWordOnAction" text="Add">
+                                                          <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                                    </items>
+                                                </SplitPane>
+                                            </children>
+                                        </AnchorPane>
+                                    </content>
+                                </Tab>
+                                <Tab onSelectionChanged="#tabLessonsOnSelectionChanged" text="Lessons">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                            <children>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <items>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                            <children>
+                                                                <TableView fx:id="tableViewLessons" onMouseClicked="#tableViewLessonsOnMouseClicked" prefHeight="297.0" prefWidth="456.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                    <columns>
+                                                                        <TableColumn fx:id="columnLessonId" minWidth="50.0" prefWidth="-1.0" text="Id">
+                                                                            <cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory></TableColumn>
+                                                                        <TableColumn fx:id="columnLessonEnglishName" minWidth="100.0" prefWidth="-1.0" text="English Name">
+                                                                            <cellValueFactory><PropertyValueFactory property="englishName" /></cellValueFactory></TableColumn>
+                                                                        <TableColumn fx:id="columnLessonPolishName" minWidth="100.0" prefWidth="-1.0" text="Polish Name">
+                                                                            <cellValueFactory><PropertyValueFactory property="polishName" /></cellValueFactory></TableColumn>
+                                                                        <TableColumn fx:id="columnLessonCourse" minWidth="100.0" prefWidth="-1.0" text="Course">
+                                                                            <cellValueFactory><PropertyValueFactory property="course" /></cellValueFactory></TableColumn>
+                                                                        <TableColumn fx:id="columnLessonImage" minWidth="50.0" prefWidth="-1.0" text="Image">
+                                                                            <cellValueFactory><PropertyValueFactory property="image" /></cellValueFactory></TableColumn>
+                                                                    </columns>
+                                                                </TableView>
+                                                            </children>
+                                                        </AnchorPane>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="155.0" prefWidth="312.0" SplitPane.resizableWithParent="false">
+                                             <children>
+                                                <VBox prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <HBox prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <Text layoutX="159.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id:" textOrigin="CENTER">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </Text>
+                                                            <TextField fx:id="textFieldLessonId" editable="false" prefWidth="30.0">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="English Name:">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </Text>
+                                                            <TextField fx:id="textFieldLessonEnglishName" layoutX="10.0" layoutY="10.0" HBox.hgrow="ALWAYS">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <Text layoutX="159.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Polish Name:">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </Text>
+                                                            <TextField fx:id="textFieldLessonPolishName" layoutX="182.0" layoutY="10.0" HBox.hgrow="ALWAYS">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <Text layoutX="332.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </Text>
+                                                            <ComboBox fx:id="comboBoxLessonCourse" prefWidth="150.0">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               </HBox.margin>
+                                                            </ComboBox>
+                                                         </children>
+                                                      </HBox>
+                                                      <Region VBox.vgrow="ALWAYS" />
+                                                      <HBox>
+                                                         <children>
+                                                            <CheckBox fx:id="checkBoxConfirmDeleteLesson" mnemonicParsing="false" onAction="#checkBoxConfirmDeleteLessonOnAction" selected="true" text="Confirm Delete">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="7.5" />
+                                                               </HBox.margin>
+                                                            </CheckBox>
+                                                            <Region HBox.hgrow="ALWAYS">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               </HBox.margin>
+                                                            </Region>
+                                                            <Button mnemonicParsing="false" onAction="#buttonClearLessonOnAction" text="Clear">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               </HBox.margin>
+                                                            </Button>
+                                                            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonDeleteLessonOnAction" text="Delete">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               </HBox.margin>
+                                                            </Button>
+                                                            <Button layoutX="210.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonEditLessonOnAction" text="Edit">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               </HBox.margin>
+                                                            </Button>
+                                                            <Button layoutX="331.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonAddLessonOnAction" text="Add">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               </HBox.margin>
+                                                            </Button>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                             </children></AnchorPane>
+                                                    </items>
+                                                </SplitPane>
+                                            </children>
+                                        </AnchorPane>
+                                    </content>
+                                </Tab>
+                                <Tab onSelectionChanged="#tabCoursesOnSelectionChanged" text="Courses">
+                                    <content>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                            <children>
+                                                <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <items>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0">
+                                                            <children>
+                                                                <TableView fx:id="tableViewCourses" editable="true" onMouseClicked="#tableViewCoursesOnMouseClicked" prefHeight="297.0" prefWidth="456.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                    <columns>
+                                                                        <TableColumn fx:id="columnCourseId" minWidth="50.0" prefWidth="-1.0" text="Id">
+                                                                            <cellValueFactory><PropertyValueFactory property="id" /></cellValueFactory></TableColumn>
+                                                                        <TableColumn fx:id="columnCourseEnglishName" minWidth="100.0" prefWidth="-1.0" text="English Name">
+                                                                            <cellValueFactory><PropertyValueFactory property="englishName" /></cellValueFactory></TableColumn>
+                                                                        <TableColumn fx:id="columnCoursePolishName" minWidth="100.0" prefWidth="-1.0" text="Polish Name">
+                                                                            <cellValueFactory><PropertyValueFactory property="polishName" /></cellValueFactory></TableColumn>
+                                                                        <TableColumn fx:id="columnCourseImage" minWidth="50.0" prefWidth="-1.0" text="Image">
+                                                                            <cellValueFactory><PropertyValueFactory property="image" /></cellValueFactory></TableColumn>
+                                                                    </columns>
+                                                                </TableView>
+                                                            </children>
+                                                        </AnchorPane>
+                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="155.0" prefWidth="312.0" SplitPane.resizableWithParent="false">
+                                             <children>
+                                                <VBox layoutX="83.0" layoutY="8.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <children>
+                                                      <HBox prefHeight="100.0" prefWidth="200.0">
+                                                         <children>
+                                                            <Text layoutX="159.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id:" textOrigin="CENTER">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </Text>
+                                                            <TextField fx:id="textFieldCourseId" editable="false" prefWidth="30.0">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="%textCourseName">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </Text>
+                                                            <TextField fx:id="textFieldCourseEnglishName" layoutX="10.0" layoutY="10.0" HBox.hgrow="ALWAYS">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                            <Text layoutX="159.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Polish Name:">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                                                               </HBox.margin>
+                                                            </Text>
+                                                            <TextField fx:id="textFieldCoursePolishName" layoutX="182.0" layoutY="10.0" HBox.hgrow="ALWAYS">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               </HBox.margin>
+                                                            </TextField>
+                                                         </children>
+                                                      </HBox>
+                                                      <Region VBox.vgrow="ALWAYS" />
+                                                      <HBox>
+                                                         <children>
+                                                            <CheckBox fx:id="checkBoxConfirmDeleteCourse" mnemonicParsing="false" onAction="#checkBoxConfirmDeleteCourseOnAction" selected="true" text="Confirm Delete">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="7.5" />
+                                                               </HBox.margin>
+                                                            </CheckBox>
+                                                            <Region HBox.hgrow="ALWAYS">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               </HBox.margin>
+                                                            </Region>
+                                                            <Button mnemonicParsing="false" onAction="#buttonClearCourseOnAction" text="Clear">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               </HBox.margin>
+                                                            </Button>
+                                                            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonDeleteCourseOnAction" text="Delete">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               </HBox.margin>
+                                                            </Button>
+                                                            <Button layoutX="210.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonEditCourseOnAction" text="Edit">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               </HBox.margin>
+                                                            </Button>
+                                                            <Button layoutX="331.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonAddCourseOnAction" text="Add">
+                                                               <HBox.margin>
+                                                                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                               </HBox.margin>
+                                                            </Button>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                             </children></AnchorPane>
+                                                    </items>
+                                                </SplitPane>
+                                            </children>
+                                        </AnchorPane>
+                                    </content>
+                                </Tab>
+                            </tabs>
+                        </TabPane>
+                    </children>
+                </AnchorPane>
+            </items>
+         <BorderPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </BorderPane.margin>
+        </SplitPane>
+    </center>
+   <bottom>
+      <HBox BorderPane.alignment="CENTER">
+         <children>
+            <CheckBox fx:id="checkBoxCopyToClipboard" mnemonicParsing="false" text="Copy to clipboard">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </CheckBox>
+            <CheckBox fx:id="checkBoxTranslateOnClick" mnemonicParsing="false" text="Translate on click">
+               <HBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </HBox.margin>
+            </CheckBox>
+            <Region HBox.hgrow="ALWAYS" />
+            <Text fx:id="textStatus" strokeType="OUTSIDE" strokeWidth="0.0" text="textStatus">
+               <HBox.margin>
+                  <Insets bottom="5.0" />
+               </HBox.margin></Text>
+         </children>
+         <BorderPane.margin>
+            <Insets left="5.0" right="5.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+</BorderPane>
