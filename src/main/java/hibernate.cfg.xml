@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!--<property name="connection.url">jdbc:postgresql://localhost:5432/englishApp</property>
+        <property name="connection.driver_class">org.postgresql.Driver</property>
+        <property name="connection.username">postgres</property>
+        <property name="connection.password">$PostgreSQL_password</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.enable_lazy_load_no_trans">true</property> -->
+        <!-- <property name="connection.password"/> -->
+
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hbm2ddl.auto">update</property> -->
+
+        <!--<mapping package="rwilk.englishWordsGUI.model"/>-->
+
+        <!-- add mapping to disable IntelliJ warnings in JPA query -->
+        <mapping class="rwilk.englishWordsGUI.model.Course"/>
+        <mapping class="rwilk.englishWordsGUI.model.Word"/>
+        <mapping class="rwilk.englishWordsGUI.model.Lesson"/>
+        <!--<mapping class="rwilk.englishWordsGUI.model.Sentence"/>-->
+    </session-factory>
+</hibernate-configuration>
